@@ -8,3 +8,18 @@
 
 
 ![image](https://github.com/user-attachments/assets/7dda5194-9c55-498d-bf59-124e0f4698ab)
+
+![image](https://github.com/user-attachments/assets/94f51434-9752-458a-8b3f-ad6ae230fc09)
+
+![image](https://github.com/user-attachments/assets/a659271a-00b5-4725-ac27-39f2670a2e19)
+
+https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/#google_vignette
+
+![image](https://github.com/user-attachments/assets/fde17ac1-9652-4bb9-aa6d-d0aacfdd260c)
+
+![image](https://github.com/user-attachments/assets/fdf081c4-ce79-46bd-96cd-d14d3021bc0d)
+
+
+
+
+
