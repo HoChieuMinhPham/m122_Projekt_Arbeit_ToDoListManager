@@ -64,7 +64,84 @@ main_application() {
 main_application
 ```
 
-### show_todos()
+## main_application
+
+Wir haben eine einfache Abfrage Funktion gemacht, das den Nutzer fragt, welche Funktion der Nutzer ausführen will.
+
+Ausserdem haben wir ein Java-Projekt gemacht und uns davon inspirieren lassen. 
+
+### java
+```java
+public class MainApplication {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        RunZoo zoo = new RunZoo();
+        Game game = new Game();
+boolean mainFunction = true;
+
+        while (mainFunction) {
+            System.out.println();
+            System.out.println("1. Add an animal to the zoo");
+            System.out.println("2. Display animals in the zoo");
+            System.out.println("3. Animal Battle");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            String input = scanner.nextLine();
+            int choice = 0;
+            try {
+                choice = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("You must input a number!");
+
+            }
+            switch (choice) {
+                case 1 -> addAnimalToZoo(scanner, zoo);
+                case 2 -> zoo.displayAnimals();
+                case 3 -> {
+                    mainFunction = game.startGame((zoo.getAnimals()));
+                }
+                case 4 -> {
+                    System.out.println("Exiting program.");
+                    mainFunction = false;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+```
+
+### bash 
+```bash
+main_application() {
+    while true; do
+        echo "1. Show To-Do List"
+        echo "2. Add a New Task"
+        echo "3. Update Task Status"
+        echo "4. Exit"
+        read -p "Choose an option: " option
+
+        case $option in
+        1) show_todos ;;
+        2) add_task ;;
+        3) update_status ;;
+        4) exit 0 ;;
+        *)
+            echo "Invalid option. Please choose a valid option."
+            echo ""
+            ;;
+        esac
+    done
+}
+```
+Wie man sieht, sieht unser bash main application sehr ähnlich aus.
+
+Der switch case von Java wird hier als case Statement ersetzt.
+
+Jede Zahl wurde von einer Funktion erteilt. 
+
+Also wenn man 1 eingibt, dann wird show_todos ausgeführt.
+
+## show_todos()
 
 ```bash
   show_todos() {
@@ -85,14 +162,36 @@ Wir haben hier eine einfache If Statement rein getan, das prüft, ob das File ex
 ```bash
 [[ -f "$TODO_FILE" ]]
 ```
+![image](https://github.com/user-attachments/assets/39bf384a-da54-4f44-a545-3ce4ff75c217)
+
 Dieser Test schaut, ob das File existiert, wenn ja, dann werden die Inhalte von File ausgedruckt.
 ![image](https://github.com/user-attachments/assets/9b345356-1a97-448f-a63b-b9b6f1cbeabc)
 
-Sonst bekommt man diese Fehler meldung
+Sonst bekommt man diese Fehlermeldung.
 
 ![image](https://github.com/user-attachments/assets/33e8b340-bc3c-45d3-9269-9379afa86e2d)
 
-### add_task
+## add_task
+
+```bash
+add_task() {
+    echo ""
+    read -p "Enter Task Name: " name
+    read -p "Enter Deadline: " deadline
+
+    if [[ -z "$name" || -z "$deadline" ]]; then
+        echo "Task name and deadline cannot be empty."
+        return 1
+    fi
+
+    echo "${deadline}: ${name}" >> "$TODO_FILE"
+    echo "Task (${name}) added successfully."
+}
+```
+![image](https://github.com/user-attachments/assets/4dd19fe3-e2b2-4c71-8db0-664e03ec313f)
+
+
+
 
 
 
