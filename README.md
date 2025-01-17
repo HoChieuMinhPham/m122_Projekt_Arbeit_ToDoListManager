@@ -216,7 +216,8 @@ nummer list show todo
 
 https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/#google_vignette
 
-![image](https://github.com/user-attachments/assets/fde17ac1-9652-4bb9-aa6d-d0aacfdd260c)
+![image](https://github.com/user-attachments/assets/42fd1f5a-3922-4832-a207-f55960accc82)
+
 
 ![image](https://github.com/user-attachments/assets/fdf081c4-ce79-46bd-96cd-d14d3021bc0d)
 
