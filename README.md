@@ -193,6 +193,8 @@ add_task() {
 
 
 
+# Version 2 -> mit update status
+
 
 
 ![Screenshot 2025-01-13 152213](https://github.com/user-attachments/assets/8f411d04-1f59-46ed-ae91-6f30bc04a27f)
