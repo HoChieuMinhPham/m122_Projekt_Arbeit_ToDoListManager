@@ -19,7 +19,12 @@ https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/#google_vig
 
 ![image](https://github.com/user-attachments/assets/fdf081c4-ce79-46bd-96cd-d14d3021bc0d)
 
+![image](https://github.com/user-attachments/assets/eba47ee4-ee7f-47b2-b16f-9bdbb1fbe9ad)
 
+![image](https://github.com/user-attachments/assets/42ea7e53-d5be-41ba-9448-540d2408fc46)
+
+
+![image](https://github.com/user-attachments/assets/06fa1a6e-22d5-4a66-8604-f8012a2c9d3b)
 
 
 
