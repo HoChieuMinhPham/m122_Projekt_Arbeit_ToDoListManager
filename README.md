@@ -195,6 +195,8 @@ add_task() {
 
 # Version 2 -> mit update status
 
+https://www.freecodecamp.org/news/bash-array-how-to-declare-an-array-of-strings-in-a-bash-script/
+
 
 
 ![Screenshot 2025-01-13 152213](https://github.com/user-attachments/assets/8f411d04-1f59-46ed-ae91-6f30bc04a27f)
