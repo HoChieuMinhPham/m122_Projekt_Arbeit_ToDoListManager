@@ -263,6 +263,20 @@ shorter code
 refactor update status
 ![image](https://github.com/user-attachments/assets/efc864c8-d75f-41bc-9cf2-1aa178626f3f)
 
+prüft ob input valid ist
+
+![image](https://github.com/user-attachments/assets/1fec9e76-6755-4e1c-a0e9-983b01a475a1)
+
+checkIfUpdateTodoNumberIsgreaterThanList is valid method 
+
+![image](https://github.com/user-attachments/assets/73d30608-8571-4482-858a-78e616a320a2)
+
+![image](https://github.com/user-attachments/assets/c75d6b0e-2700-433d-b088-267be577dae0)
+
+
+
+
+
 
 
 
