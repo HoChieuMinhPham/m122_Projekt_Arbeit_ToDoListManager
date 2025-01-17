@@ -4,32 +4,60 @@ command=$1
 task=$2
 TODO_FILE="todos.txt"
 
+statusList=("to Start" "in process" "finished")
+
 show_todos() {
-    if [[ -f "$TODO_FILE" ]]; then
+    if [ -f "$TODO_FILE" ]; then
         echo ""
         echo "Your ToDo List:"
         cat "$TODO_FILE"
         echo ""
     else
-        echo ""
         echo "No tasks found."
-        echo ""
     fi
 }
 
 add_task() {
     echo ""
-    read -p "Enter Task Name: " name
-    read -p "Enter Deadline: " zeit
+        read -p "Enter Task Name: " name
+        read -p "Enter Deadline: " deadline
 
-    if [[ -z "${}"]]
-    echo "${zeit}: ${name}" >> "$TODO_FILE"
-    echo "Task (${name}) added successfully."
+        if [[ -z "$name" || -z "$deadline" ]]; then
+            echo "Task name and deadline cannot be empty."
+            return 1
+        fi
+
+        echo "${deadline}: ${name}" >> "$TODO_FILE"
+        echo "Task (${name}) added successfully."
 }
 
 update_status() {
     show_todos
 
+    read -p "Choose the ToDo number to update: " ToDo_Number
+
+    number=0
+    echo "Available statuses:"
+    for status in "${statusList[@]}"; do
+        number=$((number + 1))
+        echo "$number: $status"
+    done
+
+    read -p "Choose the status number: " statusNumber
+
+    if [[ "$statusNumber" -lt 1 || "$statusNumber" -gt ${#statusList[@]} ]]; then
+        echo "Invalid status number. Please try again."
+        return
+    fi
+
+    lineNumber=$((ToDo_Number))
+
+    taskLine=$(sed -n "${lineNumber}p" "$TODO_FILE")
+
+    newStatus="${statusList[$((statusNumber - 1))]}"
+    sed -i "${lineNumber}s/Status: .*/Status: $newStatus/" "$TODO_FILE"
+
+    echo "Task updated to '$newStatus'."
 }
 
 
