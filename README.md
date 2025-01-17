@@ -222,8 +222,10 @@ https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/#google_vig
 
 ![image](https://github.com/user-attachments/assets/42ea7e53-d5be-41ba-9448-540d2408fc46)
 
+![image](https://github.com/user-attachments/assets/4bc10c7f-9d82-4f9b-8cc0-7e0658842867)
 
 ![image](https://github.com/user-attachments/assets/06fa1a6e-22d5-4a66-8604-f8012a2c9d3b)
 
+![image](https://github.com/user-attachments/assets/e71c4a23-0e67-4016-be78-99031a922dbc)
 
 
