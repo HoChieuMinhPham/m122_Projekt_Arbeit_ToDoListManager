@@ -208,6 +208,8 @@ https://www.freecodecamp.org/news/bash-array-how-to-declare-an-array-of-strings-
 
 ![image](https://github.com/user-attachments/assets/7dda5194-9c55-498d-bf59-124e0f4698ab)
 
+nummer list show todo
+
 ![image](https://github.com/user-attachments/assets/94f51434-9752-458a-8b3f-ad6ae230fc09)
 
 ![image](https://github.com/user-attachments/assets/a659271a-00b5-4725-ac27-39f2670a2e19)
@@ -218,6 +220,16 @@ https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/#google_vig
 
 ![image](https://github.com/user-attachments/assets/fdf081c4-ce79-46bd-96cd-d14d3021bc0d)
 
+
+
+
+
+
+
+
+
+
+
 ![image](https://github.com/user-attachments/assets/eba47ee4-ee7f-47b2-b16f-9bdbb1fbe9ad)
 
 ![image](https://github.com/user-attachments/assets/42ea7e53-d5be-41ba-9448-540d2408fc46)
@@ -227,5 +239,29 @@ https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/#google_vig
 ![image](https://github.com/user-attachments/assets/06fa1a6e-22d5-4a66-8604-f8012a2c9d3b)
 
 ![image](https://github.com/user-attachments/assets/e71c4a23-0e67-4016-be78-99031a922dbc)
+
+
+![image](https://github.com/user-attachments/assets/b8bc96c5-0cfe-4951-97e7-518faa443419)
+
+
+update status funktioniert
+![image](https://github.com/user-attachments/assets/d3d57ab9-846f-4d29-94cf-957231538b7a)
+
+
+
+
+
+code is redundant
+![image](https://github.com/user-attachments/assets/66c17d69-6a17-4475-a9ac-3fe04b7db9f2)
+
+shorter code
+![image](https://github.com/user-attachments/assets/4f3b80c0-89c7-4601-8744-2b295db036a2)
+![image](https://github.com/user-attachments/assets/3f3a7cbd-9772-4f18-ae78-f3feb95201fc)
+
+
+refactor update status
+![image](https://github.com/user-attachments/assets/efc864c8-d75f-41bc-9cf2-1aa178626f3f)
+
+
 
 
