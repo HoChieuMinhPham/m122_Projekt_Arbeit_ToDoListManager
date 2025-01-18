@@ -290,6 +290,8 @@ Wir wollten lokale Variablen in den Funktionen haben, also haben wir die Datei u
 
 Das Problem ist, dass die Array-Liste nicht richtig funktioniert hat: in der Funktion „add_task“ der Status „is“ anstelle von „is starting“ .
 
+![Screenshot 2025-01-13 152213](https://github.com/user-attachments/assets/8f411d04-1f59-46ed-ae91-6f30bc04a27f)
+
 Wir dachten, dass mit der Array-Liste etwas nicht in Ordnung sein muss, also haben wir die Array-Liste anders initialisiert
 
 ### Link zum ArrayList
@@ -297,44 +299,51 @@ https://www.geeksforgeeks.org/bash-scripting-array/
 
 ![image](https://github.com/user-attachments/assets/a3061380-d149-4ce1-9720-6bb1117da21b)
 
-![Screenshot 2025-01-13 152213](https://github.com/user-attachments/assets/8f411d04-1f59-46ed-ae91-6f30bc04a27f)
+
 
 ![Screenshot 2025-01-15 162544](https://github.com/user-attachments/assets/e26dd0a5-e297-43a7-b3fc-4c0236d99a42)
 
+Aber es hat trotzdem nicht funktioniert, deshalb haben wir einfach die Strings umbenennt.
+
 ![Screenshot 2025-01-15 163708](https://github.com/user-attachments/assets/27a6ddbd-31a9-4b4b-9d64-631d33a6cbd7)
-
-
 ![image](https://github.com/user-attachments/assets/7dda5194-9c55-498d-bf59-124e0f4698ab)
 
-nummer list show todo
+In Funktion show_todo ist die Liste nicht nummeriert. Deshalb wollen wir wissen, wie man Zeile für Zeile aus einem Text liest. Auf diese Weise können wir die Liste der Aufgaben leichter nummerieren.
 
 ![image](https://github.com/user-attachments/assets/94f51434-9752-458a-8b3f-ad6ae230fc09)
 
 ![image](https://github.com/user-attachments/assets/a659271a-00b5-4725-ac27-39f2670a2e19)
 
+Hier gibt man einfach die Inhalte der Datei aus. -> nicht nummeriert.
 
 ### Link how to read line by line from file
 https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/#google_vignette
 
 ![image](https://github.com/user-attachments/assets/b963a78e-5e39-4bd4-99bd-8ac286ba1f47)
 
+![image](https://github.com/user-attachments/assets/3ab75aa2-949e-4b95-b9de-cca7aeb22450)
 
-![image](https://github.com/user-attachments/assets/42fd1f5a-3922-4832-a207-f55960accc82)
-
+```bash
+  echo ""
+        local counter=0
+        while read -r line; do
+            ((counter++))
+            echo "$counter: $line"
+        done < "$todo_file"
+        echo ""
+```
 
 ![image](https://github.com/user-attachments/assets/fdf081c4-ce79-46bd-96cd-d14d3021bc0d)
 
+Jetzt wird die Liste von der Datei nummeriert.
 
-
-
-
-
-
-
-
-
+Das Problem, warum wir nur Status : „is“ statt „is starting“ erhalten, liegt darin, dass wir die Statusliste nicht in den Parameter eingegeben und den Wert für unsere lokale Variable nicht richtig zugewiesen haben.
 
 ![image](https://github.com/user-attachments/assets/eba47ee4-ee7f-47b2-b16f-9bdbb1fbe9ad)
+
+![image](https://github.com/user-attachments/assets/5f7ded5d-fc77-473d-9421-e734f8ffffa0)
+
+Wir müssen die lokale Variable als Array-Liste initialisieren. Die Variable ist also keine Array-Liste -> sie hat nur mehrere Werte. Deshalb müssen wir jeden Wert aus der Array-Liste nehmen und ihn in unsere lokale Variable setzen.
 
 ![image](https://github.com/user-attachments/assets/42ea7e53-d5be-41ba-9448-540d2408fc46)
 
@@ -344,37 +353,203 @@ https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/#google_vig
 
 ![image](https://github.com/user-attachments/assets/e71c4a23-0e67-4016-be78-99031a922dbc)
 
+Jetzt funktioniert die Array Liste, aber im Show Todos wird 2 Listen angezeigt -> nummiert und nicht nummerniert
 
-![image](https://github.com/user-attachments/assets/b8bc96c5-0cfe-4951-97e7-518faa443419)
-
-
-update status funktioniert
-![image](https://github.com/user-attachments/assets/d3d57ab9-846f-4d29-94cf-957231538b7a)
-
-
-
-
-
-code is redundant
+Code ist redundant
 ![image](https://github.com/user-attachments/assets/66c17d69-6a17-4475-a9ac-3fe04b7db9f2)
 
-shorter code
+Wir haben zwei Codes die, das selbe machen -> Inhalte von File anzeigen
+
+kürzere Code
 ![image](https://github.com/user-attachments/assets/4f3b80c0-89c7-4601-8744-2b295db036a2)
 ![image](https://github.com/user-attachments/assets/3f3a7cbd-9772-4f18-ae78-f3feb95201fc)
 
+# Version 4 -> Inputs überprüfen ob sie valid sind.
 
-refactor update status
-![image](https://github.com/user-attachments/assets/efc864c8-d75f-41bc-9cf2-1aa178626f3f)
+## add tasks
 
-prüft ob input valid ist
+### Link -> check if String is empty or not 
+https://unix.stackexchange.com/questions/571037/check-for-non-empty-string-in-the-shell-instead-of-z
 
-![image](https://github.com/user-attachments/assets/1fec9e76-6755-4e1c-a0e9-983b01a475a1)
+![image](https://github.com/user-attachments/assets/eef4acd9-5f50-4ab3-993c-46e1047794d8)
 
-checkIfUpdateTodoNumberIsgreaterThanList is valid method 
 
-![image](https://github.com/user-attachments/assets/73d30608-8571-4482-858a-78e616a320a2)
+```bash
+if_input_is_valid_add_task(){
+  
+    local task=$1
+    local deadline=$2
 
-![image](https://github.com/user-attachments/assets/c75d6b0e-2700-433d-b088-267be577dae0)
+   if [[ -z "$task" ]] && [[ -z "$deadline" ]]; then
+        echo ""
+        echo "Please enter a task and deadline"
+        echo "Task is not added in the todo file"
+        echo ""
+        return 1   
+    elif [[ -n "$task" ]] && [[ -z "$deadline" ]]; then  
+        echo ""
+        echo "Please enter the deadline"
+        echo "Task is not added in the todo file"
+        echo ""
+        return 2
+    elif [[ -z "$task" ]] && [[ -n "$deadline" ]]; then  
+        echo ""
+        echo "Please enter the task"
+        echo "Task is not added in the todo file"
+        echo ""
+        return 3
+    else 
+        return 0
+    fi      
+}
+```
+Hier in der Funktion add task ist der Code viel einfacher zu lesen
+```bash
+ if if_input_is_valid_add_task $task $deadline; then
+        echo ""
+        echo "${deadline}: ${task}, Status: ${status_list[0]}" >> "$todo_file"
+        echo "Task (${task}) added successfully."
+        return 0
+    else
+        return 1
+    fi
+```
+
+### output: 
+
+![image](https://github.com/user-attachments/assets/e878ff76-05da-4051-a054-d0a69490b7b9)
+
+![image](https://github.com/user-attachments/assets/9b1187c7-44b1-4134-a2c4-910325bd5225)
+
+
+
+## input is not a number 
+
+```bash
+    if_input_is_number(){
+
+    local input=$1
+
+    if (( input + 0 )) 2>/dev/null; then
+        return 0
+    else 
+        return 1
+    fi
+}
+
+---------------------------------------------------
+
+if if_input_is_number $todo_number; then
+            if if_input_is_greater_than_amount_of_tasks "$todo_file" $todo_number; then
+                echo ""
+                echo "Invalid input -> the number is not contained in the list. Please try again."
+                echo ""
+                return 3   
+            fi
+        else 
+            echo ""
+            echo "Invalid input. Must contain a number. Please try again."
+            echo ""
+            return 2
+        fi
+```
+
+### output
+![image](https://github.com/user-attachments/assets/c98c7c3e-d313-49fb-95e9-719d7b048fcd)
+
+## Input is greater than amount of task
+
+```bash
+    local todo_file=$1
+    local todo_number=$2
+    local amount_of_task_in_file=0
+
+    while read -r line; do
+        ((amount_of_task_in_file++))
+    done < "$todo_file"
+
+    if [[ "$todo_number" -gt "$amount_of_task_in_file" ]]; then
+        return 0
+    else
+        return 1
+    fi
+--------------------------------------------------------------
+if if_input_is_greater_than_amount_of_tasks "$todo_file" $todo_number; then
+    echo ""
+    echo "Invalid input -> the number is not contained in the list. Please try again."
+    echo ""
+    return 3   
+fi
+    
+```
+
+## output 
+![image](https://github.com/user-attachments/assets/471dc5ca-9ac7-4b21-b421-bd31f6df0b6d)
+
+# Funktionen Beschreibungen geben
+
+## Beispiel:
+
+```bash
+if_input_is_valid_add_task(){
+    # Here it will proof if the input from method 'add task' is valid
+    # This is only for clean codes. To make the codes easier to read and understand.
+    # It proofs only if something is written, it will not check if the Time is a time.
+    # 
+    # arguments
+    # $1 - task
+    # $2 - Deadline of the task
+    # return codes:
+    # 0 - input (Task and Time is written) is valid
+    # 1 - Nothing was written in Task and Time
+    # 2 - Task is written but Time is empty
+    # 3 - Time is written but Task is empty
+
+    local task=$1
+    local deadline=$2
+
+    if [[ -z "$task" ]] && [[ -z "$deadline" ]]; then
+        echo ""
+        echo "Please enter a task and deadline"
+        echo "Task is not added in the todo file"
+        echo ""
+        return 1   
+    elif [[ -n "$task" ]] && [[ -z "$deadline" ]]; then  
+        echo ""
+        echo "Please enter the deadline"
+        echo "Task is not added in the todo file"
+        echo ""
+        return 2
+    elif [[ -z "$task" ]] && [[ -n "$deadline" ]]; then  
+        echo ""
+        echo "Please enter the task"
+        echo "Task is not added in the todo file"
+        echo ""
+        return 3
+    else 
+        return 0
+    fi    
+}
+```
+
+# Reflexion und Selbst Einschätzung
+
+In den letzten Monaten haben wir eine Menge in der Bash gelernt. Wir haben viele Fortschritte in diesem Projekt gemacht und sind stolz darauf, dass wir viele Dinge implementiert haben, so dass unser ToDo-Listen-Manager perfekt funktioniert. Aber es gibt Dinge, die wir noch verbessern wollen.
+
+Was haben wir gelernt?
+
+Wir haben gelernt, wie Arraylist funktioniert und wie man sie richtig in den Parameter einfügt.
+
+Wir haben gelernt, wie man mit dem Befehl -> read -r Zeile für Zeile aus einer Textdatei lesen kann.
+
+Wir haben gelernt, wie man eine bestimmte Zeile in einer Datei überschreiben kann
+
+Verbesserungsvorschläge
+
+Wenn der Status „is finished ist, wollen wir, dass die Aufgabe aus der Datei gelöscht wird.
+
+Die Arbeit mit Bash hat uns geholfen, unser Wissen von Bash in etwas Technisches umzuwandeln. Wir sind stolz auf unsere Fortschritte und freuen uns darauf, unser Wissen in zukünftigen Projekten anzuwenden.
+
 
 
 
