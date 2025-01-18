@@ -1,8 +1,8 @@
 # m122_Projekt_Arbeit_ToDoListManager
 
-Wir haben zuerst Gedanken gemacht, welche Funktionen unser ToDo List Manager haben soll. Natürlich gibt es 2 Funktionen -> Aufgaben erstellen und Aufgaben anzeigen. Die Beste Lösung wäre in einem txt.file Aufgaben schreiben und mit dem Kommando 'cat' die Inhalte des Files zu anzeigen.
+Zuerst haben wir uns überlegt, welche Funktionen unser ToDo List Manager haben soll. Natürlich gibt es 2 Funktionen -> Aufgaben erstellen und Aufgaben anzeigen. Die beste Lösung wäre, Aufgaben in eine txt.file zu schreiben und den Inhalt der Datei mit dem Befehl 'cat' anzuzeigen.
 
-Also begannen wir die Hauptfunktion, Funktion show_todos und Funktion add_task. Die Aufgaben werden im File todos.txt gespeichert. Wir waren sehr schnell fertig, darum haben wir eine zusätzliche Funktion namens update_status ausgedacht.
+Also fangen wir mit der Hauptfunktion, der Funktion show_todos und der Funktion add_task an. Die Aufgaben werden in der Datei todos.txt gespeichert. Wir waren sehr schnell fertig, so dass wir eine zusätzliche Funktion namens update_status erfanden.
 
 ```bash
 #!/bin/bash
@@ -66,9 +66,9 @@ main_application
 
 ## main_application
 
-Wir haben eine einfache Abfrage Funktion gemacht, das den Nutzer fragt, welche Funktion der Nutzer ausführen will.
+Wir haben eine einfache Abfragefunktion erstellt, die den Benutzer fragt, welche Funktion er ausführen möchte.
 
-Ausserdem haben wir ein Java-Projekt gemacht und uns davon inspirieren lassen. 
+Wir haben auch ein Java-Projekt gemacht und uns davon inspirieren lassen. 
 
 ### java
 ```java
@@ -133,13 +133,13 @@ main_application() {
     done
 }
 ```
-Wie man sieht, sieht unser bash main application sehr ähnlich aus.
+Wie man sieht, sieht unsere bash main Anwendung sehr ähnlich aus.
 
-Der switch case von Java wird hier als case Statement ersetzt.
+Der switch case von Java wird hier durch eine case-Anweisung ersetzt.
 
-Jede Zahl wurde von einer Funktion erteilt. 
+Jeder Zahl ist eine Funktion zugeordnet. 
 
-Also wenn man 1 eingibt, dann wird show_todos ausgeführt.
+Wenn man also 1 eingibt, wird show_todos ausgeführt.
 
 ## show_todos()
 
@@ -158,13 +158,13 @@ Also wenn man 1 eingibt, dann wird show_todos ausgeführt.
 }
 ```
 
-Wir haben hier eine einfache If Statement rein getan, das prüft, ob das File existiert. 
+Wir haben hier eine einfache If-Statement eingefügt, die prüft, ob die Datei existiert. 
 ```bash
 [[ -f "$TODO_FILE" ]]
 ```
 ![image](https://github.com/user-attachments/assets/39bf384a-da54-4f44-a545-3ce4ff75c217)
 
-Dieser Test schaut, ob das File existiert, wenn ja, dann werden die Inhalte von File ausgedruckt.
+Dieser Test prüft, ob die Datei existiert, wenn ja, wird der Inhalt der Datei ausgedruckt.
 ![image](https://github.com/user-attachments/assets/9b345356-1a97-448f-a63b-b9b6f1cbeabc)
 
 Sonst bekommt man diese Fehlermeldung.
@@ -191,13 +191,111 @@ add_task() {
 ![image](https://github.com/user-attachments/assets/4dd19fe3-e2b2-4c71-8db0-664e03ec313f)
 
 
+Hier wird der Benutzer aufgefordert, die Aufgabe und die Frist/ Deadline der Aufgabe einzugeben. Dann wird geprüft, ob die Eingaben nicht leer sind, und wenn dies der Fall ist, wird die Eingabe in einer Zeile gespeichert und in die Datei geschrieben.
+
+```bash
+  echo "${zeit}: ${name}" >> "$TODO_FILE"
+```
 
 
 # Version 2 -> mit update status
 
+Wir wollten eine neue Variable zu unseren Aufgaben hinzufügen -> Status. Der Grund dafür ist, dass wir verstehen und lernen wollten, wie man den Inhalt einer Datei manipulieren kann. Hier wollen wir wissen, wie man eine bestimmte Zeile in einer Datei überschreiben kann.
+![image](https://github.com/user-attachments/assets/7d0b6e68-b220-4831-8649-22b294770680)
+
+### Link zum Array in bash
 https://www.freecodecamp.org/news/bash-array-how-to-declare-an-array-of-strings-in-a-bash-script/
 
+![image](https://github.com/user-attachments/assets/855820cc-a52f-4f9c-a288-8635da23150e)
 
+
+![image](https://github.com/user-attachments/assets/c136a84e-1073-4bc9-996f-06dea158cb46)
+
+
+
+Wie bei der Hauptfunktion wird der Benutzer befragt. Welche Aufgabe möchte er bearbeiten, dann den Status. Am Schluss wird der Status der Aufgabe im Datei bearbeitet.
+
+```bash
+update_status() {
+    show_todos
+ 
+    read -p "Choose the ToDo number to update: " ToDo_Number
+ 
+    number=0
+    echo "Available statuses:"
+    for status in "${statusList[@]}"; do
+        number=$((number + 1))
+        echo "$number: $status"
+    done
+    
+    read -p "Choose the status number: " statusNumber
+    
+    if [[ "$statusNumber" -lt 1 || "$statusNumber" -gt ${#statusList[@]} ]]; then
+        echo "Invalid status number. Please try again."
+        return
+    fi
+ 
+    lineNumber=$((ToDo_Number))
+    
+    
+    newStatus="${statusList[$((statusNumber - 1))]}"
+    sed -i "${lineNumber}s/Status: .*/Status: $newStatus/" "$TODO_FILE"
+    
+    echo "Task updated to '$newStatus'."
+}
+```
+#### link wie man eine etwas ersetzen kann: overwrite
+https://collectingwisdom.com/bash-replace-line-in-file/
+
+Dieser Link half uns, die Syntax des Befehls sed -i zu verstehen 
+
+```bash
+sed -i '4s/.*/new text/' some_file.txt
+```
+
+In diesem Beispiel wird Zeile 4 in der Datei some_file.txt durch neuen Text ersetzt.
+
+Der Operator -i gibt an, dass die Zeile in der Datei an Ort und Stelle ersetzt werden soll.
+
+Wir waren aber nicht so ganz sicher wie sed -i funktioniert, weil der Link nicht alles erklärt, deshalb haben wir chat gpt gefragt
+
+![image](https://github.com/user-attachments/assets/c10658aa-c699-41c9-8204-fea663efb47a)
+
+Nachdem wir wussten, wie wir eine bestimmte Zeile überschreiben können, erstellen wir diesen sed -i Befehl
+
+```bash
+sed -i "${lineNumber}s/Status: .*/Status: $newStatus/" "$TODO_FILE"
+```
+Ausserdem haben wir im add_task etwas erweitert.
+
+```bash
+  echo "$zeit: $name, Status: ${statusList[0]}" >> "$TODO_FILE"
+```
+![image](https://github.com/user-attachments/assets/025ee0b5-25b8-42a1-99e8-4f4cb5694e0c)
+
+
+
+
+
+
+
+# Version 3 -> refactor und clean codes.
+
+Wir wollten lokale Variablen in den Funktionen haben, also haben wir die Datei und die Statusliste in die Parameter der Funktionen gesetzt
+
+![image](https://github.com/user-attachments/assets/76141c5a-3a72-4efd-b2f0-fe13d98e3cb7)
+
+![image](https://github.com/user-attachments/assets/d523de34-d821-4063-9a88-68dec09ed37a)
+
+
+Das Problem ist, dass die Array-Liste nicht richtig funktioniert hat: in der Funktion „add_task“ der Status „is“ anstelle von „is starting“ .
+
+Wir dachten, dass mit der Array-Liste etwas nicht in Ordnung sein muss, also haben wir die Array-Liste anders initialisiert
+
+### Link zum ArrayList
+https://www.geeksforgeeks.org/bash-scripting-array/
+
+![image](https://github.com/user-attachments/assets/a3061380-d149-4ce1-9720-6bb1117da21b)
 
 ![Screenshot 2025-01-13 152213](https://github.com/user-attachments/assets/8f411d04-1f59-46ed-ae91-6f30bc04a27f)
 
@@ -214,7 +312,12 @@ nummer list show todo
 
 ![image](https://github.com/user-attachments/assets/a659271a-00b5-4725-ac27-39f2670a2e19)
 
+
+### Link how to read line by line from file
 https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/#google_vignette
+
+![image](https://github.com/user-attachments/assets/b963a78e-5e39-4bd4-99bd-8ac286ba1f47)
+
 
 ![image](https://github.com/user-attachments/assets/42fd1f5a-3922-4832-a207-f55960accc82)
 
