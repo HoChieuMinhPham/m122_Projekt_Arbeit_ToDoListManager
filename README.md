@@ -4,6 +4,12 @@ Zuerst haben wir uns überlegt, welche Funktionen unser ToDo List Manager haben 
 
 Also fangen wir mit der Hauptfunktion, der Funktion show_todos und der Funktion add_task an. Die Aufgaben werden in der Datei todos.txt gespeichert. Wir waren sehr schnell fertig, so dass wir eine zusätzliche Funktion namens update_status erfanden.
 
+![image](https://github.com/user-attachments/assets/9ff23dfe-7a76-4c8c-b178-7d553505578d)
+![image](https://github.com/user-attachments/assets/45af9dc2-c6cf-4808-bee0-4e6eed3bd877)
+![image](https://github.com/user-attachments/assets/aaa90326-4c86-4209-9067-7ebb60f4dd7e)
+
+
+
 ```bash
 #!/bin/bash
 
