@@ -1,4 +1,4 @@
-# m122_Projekt_Arbeit_ToDoListManager
+# m122_Projekt_Arbeit_ToDoListManager von Minh Pham / Diego Araujo
 
 Zuerst haben wir uns überlegt, welche Funktionen unser ToDo List Manager haben soll. Natürlich gibt es 2 Funktionen -> Aufgaben erstellen und Aufgaben anzeigen. Die beste Lösung wäre, Aufgaben in eine txt.file zu schreiben und den Inhalt der Datei mit dem Befehl 'cat' anzuzeigen.
 
